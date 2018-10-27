@@ -12,7 +12,7 @@ namespace GarageLogic
 
         public GarageManager()
         { 
-            r_GarageVehicles = new Dictionary<int, GarageVehicle>();
+            r_GarageVehicles = new Dictionary<int, GarageVehicle>(); 
         }   
          
         public Dictionary<int, GarageVehicle> GetGarageVehicles()
