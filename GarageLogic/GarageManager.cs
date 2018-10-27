@@ -11,7 +11,7 @@ namespace GarageLogic
         private readonly Dictionary<int, GarageVehicle> r_GarageVehicles;
 
         public GarageManager()
-        {
+        { 
             r_GarageVehicles = new Dictionary<int, GarageVehicle>();
         }  
          
