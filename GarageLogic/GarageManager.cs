@@ -14,7 +14,7 @@ namespace GarageLogic
         {
             r_GarageVehicles = new Dictionary<int, GarageVehicle>();
         }
-
+         
         public Dictionary<int, GarageVehicle> GetGarageVehicles()
         {
             return r_GarageVehicles;
