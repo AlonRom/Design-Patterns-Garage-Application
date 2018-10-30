@@ -75,15 +75,16 @@
     <Compile Include="Interfaces\IGarageManager.cs" />
     <Compile Include="Interfaces\IRegularVehicle.cs" />
     <Compile Include="Models\Car.cs" />
-    <Compile Include="Models\ElectricCar.cs" />
-    <Compile Include="Models\ElectricMotorcycle.cs" />
+    <Compile Include="Models\CarElectric.cs" />
+    <Compile Include="Models\MotorcycleElectric.cs" />
     <Compile Include="Models\GarageVehicle.cs" />
-    <Compile Include="Models\RegularCar.cs" />
+    <Compile Include="Models\CarRegular.cs" />
     <Compile Include="Models\Motorcycle.cs" />
-    <Compile Include="Models\RegularMotorcycle.cs" />
+    <Compile Include="Models\MotorcycleRegular.cs" />
     <Compile Include="Models\Truck.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\Wheel.cs" />
+    <Compile Include="Operations\BaseOperation.cs" />
     <Compile Include="Operations\ChangeVehicleConditionOperation.cs" />
     <Compile Include="Operations\ChargeElectricVehicleOperation.cs" />
     <Compile Include="Operations\DisplayVehicleFullDataOperation.cs" />
@@ -91,11 +92,20 @@
     <Compile Include="Operations\FuelVehicleOperation.cs" />
     <Compile Include="Operations\InflateWheelsAirOperation.cs" />
     <Compile Include="Operations\InsertNewVehicleOperation.cs" />
-    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\MotorcycleElectricleInsertNewVehicleSubOperations.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\MotorcycleRegularleInsertNewVehicleSubOperations.cs" />
+    <Compile Include="Operations\Operation.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\BaseInsertNewVehicleSubOperations.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\CarElectricInsertNewVehicleSubOperations.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\CarInsertNewVehicleSubOperations.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\CarRegularInsertNewVehicleSubOperations.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\MotorcycleInsertNewVehicleSubOperations.cs" />
+    <Compile Include="Operations\InsertNewVehicleSubOperations\TruckInsertNewVehicleSubOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

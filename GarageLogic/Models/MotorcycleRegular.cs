@@ -1,9 +1,16 @@
-﻿using GarageLogic.Interfaces;
+﻿using System;
+using GarageLogic.Interfaces;
 
 namespace GarageLogic.Models
 {
-    class RegularCar : Car, IRegularVehicle
+    class MotorcycleRegular : Motorcycle, IRegularVehicle
     {
+        public MotorcycleRegular()
+        {
+            FuelType = eFuelType.Octan96;
+            MaxAmountOfFuelInLiters = 6;
+        }
+
         public eFuelType FuelType { get; set; }
 
         public float CurrentAmountOfFuelInLiters { get; set; }
@@ -12,7 +19,7 @@ namespace GarageLogic.Models
 
         public void Refuel(float i_LitersToAdd, eFuelType i_FuelType)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

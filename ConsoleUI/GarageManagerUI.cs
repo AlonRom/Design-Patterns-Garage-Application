@@ -4,6 +4,7 @@ using System.Linq;
 using GarageLogic;
 using GarageLogic.Interfaces;
 using GarageLogic.Models;
+using GarageLogic.Operations;
 
 namespace ConsoleUI
 {
@@ -79,9 +80,31 @@ namespace ConsoleUI
                             Console.Write(Environment.NewLine);
                         }
                     }
+                    if(currentOperationStatus == eOperationStatus.CanProceedToSubMenu)
+                    {
+                        foreach(KeyValuePair<string, Func<string, eOperationStatus>> selectedOperationSubMenuInstruction in selectedOperation.SubMenuInstructions)
+                        {
+                            currentOperationStatus = eOperationStatus.Starting;
+                            while (currentOperationStatus == eOperationStatus.Starting)
+                            {
+                                try
+                                {
+                                    Console.WriteLine(selectedOperationSubMenuInstruction.Key);
+                                    string parameter = Console.ReadLine();
+                                    currentOperationStatus = selectedOperationSubMenuInstruction.Value.Invoke(parameter);
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                    Console.Write(Environment.NewLine);
+                                }
+                            }
+                        }
+
+                    }
                     if(currentOperationStatus == eOperationStatus.Completed)
                     {
-                        Console.WriteLine(selectedOperation.OperationResult);
+                        Console.WriteLine(selectedOperation.m_OperationResult);
                     }
                 }
             }

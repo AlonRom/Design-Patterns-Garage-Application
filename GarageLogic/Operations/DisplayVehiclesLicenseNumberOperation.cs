@@ -19,9 +19,8 @@ namespace GarageLogic.Operations
                 ["Please enter 1 to get all vehicles during fix\n" +
                  "Please enter 2 to get all fixed vehicles\n" +
                  "Please enter 3 to get all paid vehicles\n" +
-                 "Please enter * to get all vehicles\n"] = i_VehiclesFilter => getVehicles(i_VehiclesFilter),
+                 "Please enter * to get all vehicles\n"] = i_VehiclesFilter => getVehicles(i_VehiclesFilter)
             };
-
         }
 
         private eOperationStatus getVehicles(string i_VehiclesFilter)
@@ -34,7 +33,7 @@ namespace GarageLogic.Operations
 
             if (i_VehiclesFilter == "*")
             {
-                OperationResult = string.Join(", ", m_GarageManager.GetAllVehiclesLicenseNumber());
+                m_OperationResult = string.Join(", ", m_GarageManager.GetAllVehiclesLicenseNumber());
                 return eOperationStatus.Completed;
             }
 
@@ -43,7 +42,7 @@ namespace GarageLogic.Operations
                 throw new ArgumentException("The filter you entered doesn't exists! Please try again");
             }
 
-            OperationResult = string.Join(", ", m_GarageManager.GetVehiclesLicenseNumberByState((eVehicleState)filterByIndex));
+            m_OperationResult = string.Join(", ", m_GarageManager.GetVehiclesLicenseNumberByState((eVehicleState)filterByIndex));
             return eOperationStatus.Completed;
         }
     }

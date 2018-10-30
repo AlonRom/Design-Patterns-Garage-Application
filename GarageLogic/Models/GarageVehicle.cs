@@ -9,6 +9,8 @@
 
     public class GarageVehicle
     {
+        public Vehicle Vehicle { get; set; }    
+
         public eVehicleState VehicleState { get; set; }
 
         public string OwnerName { get; set; }

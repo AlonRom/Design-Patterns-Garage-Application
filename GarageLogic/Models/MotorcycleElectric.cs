@@ -3,8 +3,12 @@ using GarageLogic.Interfaces;
 
 namespace GarageLogic.Models
 {
-    class ElectricMotorcycle : Motorcycle, IElectricVehicle
+    class MotorcycleElectric : Motorcycle, IElectricVehicle
     {
+        public MotorcycleElectric()
+        {
+            MaxBatteryTimeInHours = (float)1.8;
+        }
         public float RemainingBatteryTimeInHours { get; set; }
 
         public float MaxBatteryTimeInHours { get; set; }
