@@ -16,8 +16,8 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
         {
             m_GarageManager = i_GarageManager;
             addColorInstruction();
-            addDoorsNumberInstruction();
             AddWheelsInstructions(Car.k_NumberOfWheels, Car.k_MaxAirPressureByManufacturer);
+            addDoorsNumberInstruction();
         }
 
         private void addColorInstruction()
@@ -62,6 +62,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             InsertNewVehicle();
             return eOperationStatus.Completed;
         }
+
 
         protected override void InsertNewVehicle()
         {

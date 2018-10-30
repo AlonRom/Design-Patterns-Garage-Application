@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\ValueOutOfRangeException.cs" />
     <Compile Include="GarageManager.cs" />
     <Compile Include="Helpers\ContainerHelper.cs" />
     <Compile Include="Interfaces\IElectricVehicle.cs" />
