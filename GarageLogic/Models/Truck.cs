@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GarageLogic.Exceptions;
 using GarageLogic.Interfaces;
 
 namespace GarageLogic.Models
@@ -13,21 +14,6 @@ namespace GarageLogic.Models
             FuelType = eFuelType.Octan96;
             MaxAmountOfFuelInLiters = 115;
             Wheels = new List<Wheel>();
-                         //{
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-                         //    new Wheel("Wheels", k_MaxAirPressureByManufacturer)
-                         //};
-
         }
         public bool IsCarryingHazardousMaterials { get; set; }
         public float MaxCarryingWeightAllowed { get; set; }
@@ -40,7 +26,11 @@ namespace GarageLogic.Models
 
         public void Refuel(float i_LitersToAdd, eFuelType i_FuelType)
         {
-            throw new System.NotImplementedException();
+            if (i_LitersToAdd < 0 || CurrentAmountOfFuelInLiters + i_LitersToAdd > MaxAmountOfFuelInLiters)
+            {
+                throw new ValueOutOfRangeException($"The fuel must be between {0} and {MaxAmountOfFuelInLiters}! Please try again");
+            }
+            CurrentAmountOfFuelInLiters += i_LitersToAdd;
         }
     }
 }

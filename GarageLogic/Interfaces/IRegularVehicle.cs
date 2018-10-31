@@ -2,10 +2,10 @@
 {
     enum eFuelType
     {
-        Octan98,
-        Octan96,
-        Octan95,
-        Soler
+        Octan98 = 1,
+        Octan96 = 2,
+        Octan95 = 3,
+        Soler = 4
     }
     interface IRegularVehicle
     {

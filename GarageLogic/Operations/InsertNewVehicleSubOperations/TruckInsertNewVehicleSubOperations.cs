@@ -13,8 +13,8 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             : base(i_GarageManager)
         {
             m_GarageManager = i_GarageManager;
-            addCarryingHazardousMaterialsInstruction();
             AddWheelsInstructions(Truck.k_NumberOfWheels, Truck.k_MaxAirPressureByManufacturer);
+            addCarryingHazardousMaterialsInstruction();
         }
 
         private void addCarryingHazardousMaterialsInstruction()

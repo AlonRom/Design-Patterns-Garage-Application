@@ -56,7 +56,11 @@ namespace GarageLogic
         public Vehicle GetVehiclesByLicenseNumber(int i_LicenseNumber)
         {
             GarageVehicle garageVehicle;
-            return r_GarageVehicles.TryGetValue(i_LicenseNumber, out garageVehicle) ? garageVehicle.Vehicle : null;
+            if(!r_GarageVehicles.TryGetValue(i_LicenseNumber, out garageVehicle))
+            {
+                throw new ArgumentException("The vehicle type you entered doesn't exists! Please try again");
+            }
+            return garageVehicle.Vehicle;
         }
 
         public int GetParsedLicenseNumber(string i_LicenseNumber)

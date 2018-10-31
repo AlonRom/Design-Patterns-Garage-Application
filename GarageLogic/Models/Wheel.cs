@@ -4,7 +4,7 @@ namespace GarageLogic.Models
 {
     public class Wheel  
     {
-        protected string ManufacturerName { get; set; }
+        private string ManufacturerName { get; set; }
 
         private float m_CurrentAirPressure;
 
@@ -21,7 +21,7 @@ namespace GarageLogic.Models
             }
         }
 
-        public float MaxAirPressureByManufacturer { get; set; }
+        public float MaxAirPressureByManufacturer { get; }
         public Wheel(string i_ManufacturerName, float i_CurrentWheelPressureToInsert, float i_MaxAirPressure)
         {
             ManufacturerName = i_ManufacturerName;
@@ -31,7 +31,7 @@ namespace GarageLogic.Models
 
         public void InflateWheel(float i_AirPressureToAdd)
         {
-            
+            m_CurrentAirPressure += i_AirPressureToAdd;
         }
 
     }

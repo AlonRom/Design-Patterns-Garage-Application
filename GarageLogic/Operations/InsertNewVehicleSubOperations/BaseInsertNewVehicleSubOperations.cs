@@ -34,7 +34,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             SubMenuInstructions.Add("Please enter wheels manufacturer name", insertWheelsManufacturerName);
             for(int i = 1; i <= i_NumberOfWheels; i++)
             {
-                SubMenuInstructions.Add("Please enter current wheel pressure between 0 to " + i_WheelsMaxPressure + " for wheel number " + i, InsertWheelCurrentPressure);
+                SubMenuInstructions.Add("Please enter current wheel pressure between 0 to " + i_WheelsMaxPressure + " for wheel number " + i, insertWheelCurrentPressure);
             }
         }
 
@@ -73,7 +73,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             return eOperationStatus.CanProceed;
         }
 
-        private eOperationStatus InsertWheelCurrentPressure(string i_WheelsCurrentPressure)
+        private eOperationStatus insertWheelCurrentPressure(string i_WheelsCurrentPressure)
         {
             float currentWheelPressureToInsert;
             if (!float.TryParse(i_WheelsCurrentPressure, out currentWheelPressureToInsert))

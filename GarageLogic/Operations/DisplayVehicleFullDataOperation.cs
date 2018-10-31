@@ -1,5 +1,4 @@
 ﻿using GarageLogic.Interfaces;
-using GarageLogic.Models;
 
 namespace GarageLogic.Operations
 {
@@ -7,6 +6,7 @@ namespace GarageLogic.Operations
     {
         public DisplayVehicleFullDataOperation(IGarageManager i_GarageManager)
         {
+            m_GarageManager = i_GarageManager;
             Index = 7;
             Details = "View full vehicle data";
         }

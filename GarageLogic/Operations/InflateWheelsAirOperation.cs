@@ -27,13 +27,19 @@ namespace GarageLogic.Operations
             {
                 Vehicle vehicle = m_GarageManager.GetVehiclesByLicenseNumber(m_LicenseNumber);
 
-                foreach (Wheel vehicleWheel in vehicle.Wheels)
-                {
-                    vehicleWheel.InflateWheel(vehicleWheel.MaxAirPressureByManufacturer - vehicleWheel.CurrentAirPressure);
-                }
+                inflateVehicleWheels(vehicle);
             }
 
-            return eOperationStatus.CanProceed;
+            m_OperationResult = $"Vehicle {m_LicenseNumber} wheels infalted successfully!";
+            return eOperationStatus.Completed;
+        }
+
+        private static void inflateVehicleWheels(Vehicle i_Vehicle)
+        {
+            foreach(Wheel vehicleWheel in i_Vehicle.Wheels)
+            {
+                vehicleWheel.InflateWheel(vehicleWheel.MaxAirPressureByManufacturer - vehicleWheel.CurrentAirPressure);
+            }
         }
     }
 }

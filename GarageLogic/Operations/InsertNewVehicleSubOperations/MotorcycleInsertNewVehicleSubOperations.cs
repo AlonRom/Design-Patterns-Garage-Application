@@ -16,8 +16,8 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
         {
             m_GarageManager = i_GarageManager;
             addLicenseTypeInstruction();
-            addEngineVolumeIntruction();
             AddWheelsInstructions(Motorcycle.k_NumberOfWheels, Motorcycle.k_MaxAirPressureByManufacturer);
+            addEngineVolumeIntruction();
         }
 
         private void addLicenseTypeInstruction()
@@ -32,7 +32,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
 
         private void addEngineVolumeIntruction()
         {
-            SubMenuInstructions.Add("Please enter engine volume in cc\n", insertCarEngineVolume);
+            SubMenuInstructions.Add("Please enter engine volume in cc", insertCarEngineVolume);
         }
 
 

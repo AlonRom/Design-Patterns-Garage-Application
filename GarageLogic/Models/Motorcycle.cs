@@ -17,29 +17,12 @@ namespace GarageLogic.Models
         public const int k_NumberOfWheels = 2;
         protected Motorcycle()
         {
-            //LicenseType = GetRandomLicenseType();
-            //EngineVolumeCc = GetRandomVolumCc();
-
-            //base.SetWheels("Wheels", )
-
-            //Wheels = new List<Wheel>();
-            //{
-            //    new Wheel("Wheels", k_MaxAirPressureByManufacturer),
-            //    new Wheel("Wheels", k_MaxAirPressureByManufacturer)
-            //};
+            Wheels = new List<Wheel>();
         }
 
         public eLicenseType LicenseType { get; set; }
 
         public int EngineVolumeCc { get; set; }
-
-        public static int NumberOfWheels
-        {
-            get
-            {
-                return k_NumberOfWheels;
-            }
-        }
 
         //private eLicenseType GetRandomLicenseType()
         //{

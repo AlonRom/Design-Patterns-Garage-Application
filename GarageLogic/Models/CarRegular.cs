@@ -1,4 +1,5 @@
-﻿using GarageLogic.Interfaces;
+﻿using GarageLogic.Exceptions;
+using GarageLogic.Interfaces;
 
 namespace GarageLogic.Models
 {
@@ -17,7 +18,11 @@ namespace GarageLogic.Models
 
         public void Refuel(float i_LitersToAdd, eFuelType i_FuelType)
         {
-            throw new System.NotImplementedException();
+            if (i_LitersToAdd < 0 || CurrentAmountOfFuelInLiters + i_LitersToAdd > MaxAmountOfFuelInLiters)
+            {
+                throw new ValueOutOfRangeException($"The fuel must be between {0} and {MaxAmountOfFuelInLiters}! Please try again");
+            }
+            CurrentAmountOfFuelInLiters += i_LitersToAdd;
         }
     }
 }
