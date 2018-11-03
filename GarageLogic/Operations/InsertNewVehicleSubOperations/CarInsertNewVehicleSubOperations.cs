@@ -43,7 +43,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
                 return eOperationStatus.CanProceed;
             }
 
-            throw new ArgumentException("The color you entered doesn't exists! Please try again");
+            throw new FormatException("The color you entered doesn't exists! Please try again");
         }
 
         private eOperationStatus insertCarDoorsNumber(string i_CarDoorsNumber)
@@ -51,7 +51,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             int doorsNumberToInsert;
             if (!int.TryParse(i_CarDoorsNumber, out doorsNumberToInsert))
             {
-                throw new ArgumentException("The number you entered is not legal! Please try again");
+                throw new FormatException("The number you entered is not legal! Please try again");
             }
             if (doorsNumberToInsert < 2 || doorsNumberToInsert > 5)
             {
@@ -63,14 +63,12 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             return eOperationStatus.Completed;
         }
 
-
         protected override void InsertNewVehicle()
         {
             Vehicle = (Car)base.Vehicle;
             Vehicle.Color = m_CarColor;
             Vehicle.DoorsNumber = m_CarDoorsNumber;
-
-            m_GarageManager.InsertNewVehicle(m_LicenseNumber, m_OwnerName, m_OwnerPhone, Vehicle);
+            base.InsertNewVehicle();
         }
     }
 }

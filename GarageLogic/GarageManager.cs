@@ -68,7 +68,11 @@ namespace GarageLogic
             int licenseNumberToInsert;
             if (!int.TryParse(i_LicenseNumber, out licenseNumberToInsert))
             {
-                throw new ArgumentException("The license number you entered is not legal! Please try again");
+                throw new FormatException("The license number you entered is not legal! Please try again");
+            }
+            if(licenseNumberToInsert < 0)
+            {
+                throw new ArgumentException("The license number you entered can't be negative! Please try again");
             }
 
             return licenseNumberToInsert;
@@ -88,7 +92,7 @@ namespace GarageLogic
             int vehicleType;
             if (!int.TryParse(i_VehicleType, out vehicleType))
             {
-                throw new ArgumentException("The vehicle type you entered is not legal! Please try again");
+                throw new FormatException("The vehicle type you entered is not legal! Please try again");
             }
             if (!Enum.IsDefined(typeof(eSupportedVehicleType), vehicleType))
             {
@@ -110,6 +114,11 @@ namespace GarageLogic
             }
 
             return (Vehicle)Activator.CreateInstance(t);
+        }
+
+        public string GetVehicleFullData(Vehicle i_Vehicle)
+        {
+            return r_GarageVehicles[i_Vehicle.LicenseNumber].ToString();
         }
 
         public IEnumerable<Operation> GetOperations()

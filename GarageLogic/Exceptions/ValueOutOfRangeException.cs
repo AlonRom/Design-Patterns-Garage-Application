@@ -2,10 +2,17 @@
 
 namespace GarageLogic.Exceptions
 {
+    [Serializable]
     public class ValueOutOfRangeException : Exception
     {
-        public ValueOutOfRangeException(string i_Message) : base(i_Message)
+        private readonly float r_MinValue;
+        private readonly float r_MaxValue;
+ 
+        public ValueOutOfRangeException(float i_MinValue, float i_MaxValue, string i_Message) : base(i_Message)
         {
+            r_MinValue = i_MinValue;
+            r_MaxValue = i_MaxValue;
         }
+
     }
 }

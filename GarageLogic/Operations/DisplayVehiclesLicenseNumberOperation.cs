@@ -27,7 +27,7 @@ namespace GarageLogic.Operations
             int filterByIndex;
             if (!int.TryParse(i_VehiclesFilter, out filterByIndex) && i_VehiclesFilter != "*")
             {
-                throw new ArgumentException("The filter you entered is not legal! Please try again");
+                throw new FormatException("The filter you entered is not legal! Please try again");
             }
 
             if (i_VehiclesFilter == "*")

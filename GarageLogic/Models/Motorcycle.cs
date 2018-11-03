@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using GarageLogic.Extensions;
 
 namespace GarageLogic.Models
 {
@@ -20,20 +21,15 @@ namespace GarageLogic.Models
             Wheels = new List<Wheel>();
         }
 
+        [Display(Name = "License type")]
         public eLicenseType LicenseType { get; set; }
 
+        [Display(Name = "Engine volume CC")]
         public int EngineVolumeCc { get; set; }
 
-        //private eLicenseType GetRandomLicenseType()
-        //{
-        //    Array values = Enum.GetValues(typeof(eLicenseType));
-        //    Random random = new Random();
-        //    return (eLicenseType)values.GetValue(random.Next(values.Length));
-        //}
-        //private int GetRandomVolumCc()
-        //{
-        //    Random random = new Random();
-        //    return random.Next(50, 300);
-        //}
+        public override string ToString()
+        {
+            return this.ToString(GetType());
+        }
     }
 }

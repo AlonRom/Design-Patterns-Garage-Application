@@ -59,7 +59,7 @@ namespace ConsoleUI
 
         private void executeOperation()
         {
-            var selectedOperation = r_Operations.ElementAtOrDefault(m_SelectedOperation.Index - 1);
+            Operation selectedOperation = r_Operations.ElementAtOrDefault(m_SelectedOperation.Index - 1);
             if(selectedOperation != null)
             {
                 foreach(KeyValuePair<string, Func<string, eOperationStatus>> instruction in selectedOperation.Instructions)
@@ -81,25 +81,7 @@ namespace ConsoleUI
                     }
                     if(currentOperationStatus == eOperationStatus.CanProceedToSubMenu)
                     {
-                        foreach(KeyValuePair<string, Func<string, eOperationStatus>> selectedOperationSubMenuInstruction in selectedOperation.SubMenuInstructions)
-                        {
-                            currentOperationStatus = eOperationStatus.Starting;
-                            while (currentOperationStatus == eOperationStatus.Starting)
-                            {
-                                try
-                                {
-                                    Console.WriteLine(selectedOperationSubMenuInstruction.Key);
-                                    string parameter = Console.ReadLine();
-                                    currentOperationStatus = selectedOperationSubMenuInstruction.Value.Invoke(parameter);
-                                }
-                                catch (Exception e)
-                                {
-                                    Console.WriteLine(e.Message);
-                                    Console.Write(Environment.NewLine);
-                                }
-                            }
-                        }
-
+                        currentOperationStatus = executeSubOperations(selectedOperation, currentOperationStatus);
                     }
                     if(currentOperationStatus == eOperationStatus.Completed)
                     {
@@ -107,6 +89,29 @@ namespace ConsoleUI
                     }
                 }
             }
+        }
+
+        private eOperationStatus executeSubOperations(Operation i_SelectedOperation, eOperationStatus i_CurrentOperationStatus)
+        {
+            foreach(KeyValuePair<string, Func<string, eOperationStatus>> selectedOperationSubMenuInstruction in i_SelectedOperation.SubMenuInstructions)
+            {
+                i_CurrentOperationStatus = eOperationStatus.Starting;
+                while(i_CurrentOperationStatus == eOperationStatus.Starting)
+                {
+                    try
+                    {
+                        Console.WriteLine(selectedOperationSubMenuInstruction.Key);
+                        string parameter = Console.ReadLine();
+                        i_CurrentOperationStatus = selectedOperationSubMenuInstruction.Value.Invoke(parameter);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.Write(Environment.NewLine);
+                    }
+                }
+            }
+            return i_CurrentOperationStatus;
         }
     }
 }

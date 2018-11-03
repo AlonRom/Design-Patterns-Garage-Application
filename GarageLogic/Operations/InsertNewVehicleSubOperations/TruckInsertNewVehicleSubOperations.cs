@@ -9,6 +9,8 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
         private new Truck Vehicle { get; set; }
 
         private bool m_IsCarryingHazardousMaterials;
+        private float m_MaximumCarryingWeightAllowedToInsert;
+
         public TruckInsertNewVehicleSubOperations(IGarageManager i_GarageManager)
             : base(i_GarageManager)
         {
@@ -19,7 +21,18 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
 
         private void addCarryingHazardousMaterialsInstruction()
         {
+            SubMenuInstructions.Add("Please enter maximum carrying weight is allowed", insertMaximumCarryingWeightAllowed);
             SubMenuInstructions.Add("Please enter Yes or No if the truck is carrying hazardous materials",insertIfCarryingHazardousMaterials);
+        }
+
+        private eOperationStatus insertMaximumCarryingWeightAllowed(string i_InsertMaximumCarryingWeightAllowed)
+        {
+            if (!float.TryParse(i_InsertMaximumCarryingWeightAllowed, out m_MaximumCarryingWeightAllowedToInsert))
+            {
+                throw new FormatException("The number you entered is not legal! Please try again");
+            }
+
+            return eOperationStatus.CanProceed;
         }
 
         private eOperationStatus insertIfCarryingHazardousMaterials(string i_IsCarryingHazardousMaterials)
@@ -45,8 +58,9 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
         protected override void InsertNewVehicle()
         {
             Vehicle = (Truck)base.Vehicle;
+            Vehicle.MaxCarryingWeightAllowed = m_MaximumCarryingWeightAllowedToInsert;
             Vehicle.IsCarryingHazardousMaterials = m_IsCarryingHazardousMaterials;
-            m_GarageManager.InsertNewVehicle(m_LicenseNumber, m_OwnerName, m_OwnerPhone, Vehicle);
+            base.InsertNewVehicle();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using GarageLogic.Extensions;
 
 namespace GarageLogic.Models
 {
@@ -20,8 +22,15 @@ namespace GarageLogic.Models
             Wheels = new List<Wheel>();
         }
 
+        [Display(Name = "Color")]
         public eColor Color { get; set; }
 
+        [Display(Name = "Doors Number")]
         public int DoorsNumber { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToString(GetType());
+        }
     }
 }

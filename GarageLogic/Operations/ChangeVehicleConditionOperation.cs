@@ -38,7 +38,7 @@ namespace GarageLogic.Operations
             int newVehicleState;
             if (!int.TryParse(i_VehicleState, out newVehicleState))
             {
-                throw new ArgumentException("The state you entered is not legal! Please try again");
+                throw new FormatException("The state you entered is not legal! Please try again");
             }
             if (newVehicleState < 1 || newVehicleState > 3)
             {

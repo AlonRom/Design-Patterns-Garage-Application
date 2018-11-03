@@ -43,7 +43,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
                 return eOperationStatus.CanProceed;
             }
 
-            throw new ArgumentException("The license type you entered doesn't exists! Please try again");
+            throw new FormatException("The license type you entered doesn't exists! Please try again");
         }
 
 
@@ -52,7 +52,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             int engineVolumeToInsert;
             if (!int.TryParse(i_CarEngineVolume, out engineVolumeToInsert))
             {
-                throw new ArgumentException("The number you entered is not legal! Please try again");
+                throw new FormatException("The number you entered is not legal! Please try again");
             }
             m_CarEngineVolume = engineVolumeToInsert;
 
@@ -65,8 +65,7 @@ namespace GarageLogic.Operations.InsertNewVehicleSubOperations
             Vehicle = (Motorcycle)base.Vehicle;
             Vehicle.EngineVolumeCc = m_CarEngineVolume;
             Vehicle.LicenseType = m_LicenseType;
-
-            m_GarageManager.InsertNewVehicle(m_LicenseNumber, m_OwnerName, m_OwnerPhone, Vehicle);
+            base.InsertNewVehicle();
         }
     }
 }

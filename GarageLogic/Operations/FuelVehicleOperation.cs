@@ -27,8 +27,6 @@ namespace GarageLogic.Operations
                 ["Please enter how much fuel you currently have"] = i_FuelQuantity => insertCurrentFuelQuantity(i_FuelQuantity),
                 ["Please enter how much fuel to fill"] = i_FuelQuantity => insertFuelQuantity(i_FuelQuantity)
             };
-
-
         }
 
         private eOperationStatus insertLicenseNumber(string i_LicenseNumber)
@@ -67,11 +65,11 @@ namespace GarageLogic.Operations
             float fuelQuantityToInsert;
             if (!float.TryParse(i_FuelQuantity, out fuelQuantityToInsert))
             {
-                throw new ArgumentException("The number you entered is not legal! Please try again");
+                throw new FormatException("The number you entered is not legal! Please try again");
             }
             if(fuelQuantityToInsert < 0 || fuelQuantityToInsert > m_Vehicle.MaxAmountOfFuelInLiters)
             {
-                throw new ValueOutOfRangeException($"The fuel must be between {0} and {m_Vehicle.MaxAmountOfFuelInLiters}! Please try again");
+                throw new ValueOutOfRangeException(0, m_Vehicle.MaxAmountOfFuelInLiters, string.Format("The fuel must be between {0} and {1}! Please try again", 0, m_Vehicle.MaxAmountOfFuelInLiters));
             }
 
             m_Vehicle.CurrentAmountOfFuelInLiters = fuelQuantityToInsert;
@@ -83,13 +81,12 @@ namespace GarageLogic.Operations
             float fuelQuantityToInsert;
             if (!float.TryParse(i_FuelQuantity, out fuelQuantityToInsert))
             {
-                throw new ArgumentException("The number you entered is not legal! Please try again");
+                throw new FormatException("The number you entered is not legal! Please try again");
             }
             m_Vehicle.Refuel(fuelQuantityToInsert, m_FuelType);
 
             m_OperationResult = $"Vehicle {m_LicenseNumber} fueled successfully!";
             return eOperationStatus.Completed;
         }
-
     }
 }
